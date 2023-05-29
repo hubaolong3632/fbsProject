@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>文章提交界面</title>
+  <!-- 引入Bootstrap样式 -->
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1 class="mt-5 mb-3 text-center">文章提交界面</h1>
+      <form>
+        <div class="form-group">
+          <label for="title">文章标题</label>
+          <input type="text" class="form-control" id="title" placeholder="请输入文章标题">
+        </div>
+        <div class="form-group">
+          <label for="category">文章分类</label>
+          <select class="form-control" id="category">
+            <option>技术文章</option>
+            <option>学术论文</option>
+            <option>文学作品</option>
+            <option>其他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="content">文章内容</label>
+          <textarea class="form-control" id="content" rows="10" placeholder="请输入文章内容"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="image">封面图片</label>
+          <input type="file" class="form-control-file" id="image">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">提交</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- 引入Bootstrap脚本 -->
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

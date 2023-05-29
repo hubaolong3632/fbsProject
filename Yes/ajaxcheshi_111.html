@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<p id="textp"></p>
+</body>
+
+<script type="module">
+    import ajax1 from './ajax.js'
+    // let json = await ajax1.ajaxlogin("login1", 'post', password, $); //登入请求
+
+    let promise = await ajax1.ajaxPromise("artile/from","post","",$);
+
+    for(let data of promise.data){
+        console.log(data);
+        for(let columnList of data.columnList){
+            // console.log(columnList);
+            for(let articleList of columnList.articleList){  //获取所有文章
+
+                console.log(data.classes+"-"+columnList.column);
+                // console.log(articleList);
+            }
+        }
+
+
+
+
+        // let k1=promise.data[dataSum].columnList[0].articleList[1];
+
+        // console.log(k1);
+
+    }
+
+
+
+</script>
+</html>

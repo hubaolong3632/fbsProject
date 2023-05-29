@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Xenon Boostrap Admin Panel" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
+    <title>登入</title>
+
+    <link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
+    <link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/xenon-core.css">
+    <link rel="stylesheet" href="assets/css/xenon-forms.css">
+    <link rel="stylesheet" href="assets/css/xenon-components.css">
+    <link rel="stylesheet" href="assets/css/xenon-skins.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+
+    <script src="assets/js/jquery-1.11.1.min.js"></script>
+
+
+    <script src="assets/js/html5shiv.min.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+
+
+</head>
+<body class="page-body lockscreen-page">
+
+<div class="login-container">
+
+    <div class="row">
+
+        <div class="col-sm-7">
+
+            <script type="text/javascript">
+                jQuery(document).ready(function($)
+                {
+                    // Reveal Login form
+                    setTimeout(function(){ $(".fade-in-effect").addClass('in'); }, 1);
+
+
+                    // Clicking on thumbnail will focus on password field
+                    $(".user-thumb a").on('click', function(ev)
+                    {
+                        ev.preventDefault();
+                        $("#passwd").focus();
+                    });
+
+                });
+            </script>
+
+            <form role="form" id="lockscreen" class="lockcreen-form fade-in-effect">
+
+                        <div class="user-thumb">
+                            <a href="#">
+                                <img src="assets/images/logo.png" class="img-responsive img-circle" />
+                            </a>
+                        </div>
+
+                        <div class="form-group">
+                            <h3>后台管理</h3>
+
+
+                            <div class="input-group">
+                                <input id="zh" type="text" class="form-control input-dark" name="text" id="name" placeholder="账号" />
+                                <span class="input-group-btn">	</span>
+
+                            </div>
+
+                            <div class="input-group">
+                                <input id="mm" type="password" class="form-control input-dark" name="passwd" id="passwd" placeholder="密码" />
+                                <span class="input-group-btn">
+                                        <button type="button" class="btn btn-primary" onclick="login()">登入</button>
+                                    </span>
+                            </div>
+                            <p id="no" style="color: #d0b213; font-weight: bold; font-size: 18px;"></p>
+                        </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+<!-- Bottom Scripts -->
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/TweenMax.min.js"></script>
+<script src="assets/js/resizeable.js"></script>
+<script src="assets/js/joinable.js"></script>
+<script src="assets/js/xenon-api.js"></script>
+<script src="assets/js/xenon-toggles.js"></script>
+<script src="assets/js/jquery-validate/jquery.validate.min.js"></script>
+<script src="assets/js/toastr/toastr.min.js"></script>
+
+
+<!-- JavaScripts initializations and stuff -->
+<script type="module">
+
+
+    import ajax1 from './ajax.js'
+
+      window.login=async function () { //登入
+
+
+          let password = { //数据的提交区域
+              data: { //json格式传输
+                  "username": document.getElementById("zh").value,
+                  "password": document.getElementById("mm").value,
+              },
+          }
+          let json = await ajax1.ajaxlogin("login1", 'post', password, $); //登入请求
+
+
+          console.log(json);
+          if (json.code == 1) { //验证成功
+              localStorage.setItem('key', json.data.key); //保存到秘钥
+              // localStorage.setItem('name', json.data.name); //保存名称
+              // localStorage.setItem('jurisdiction', json.data.jurisdiction); //保存权限
+              window.location.href='index.html'
+          }else{
+              document.getElementById("no").innerText=json.msg;//各种失败原因
+          }
+
+      }
+
+
+
+</script>
+
+</body>
+</html>

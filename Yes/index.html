@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script>
+		if(localStorage.getItem('key')==""){
+         		window.location.href="login.html"
+		}
+
+
+	</script>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="BST" />
+	<meta name="author" content="" />
+
+	<title>BST后台界面</title>
+	<link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
+
+
+
+	<link rel="stylesheet" href="../css/bootstrap_wjxy_c1.css">
+	<link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
+	<link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/css/bootstrap.css">
+	<link rel="stylesheet" href="assets/css/xenon-core.css">
+	<link rel="stylesheet" href="assets/css/xenon-forms.css">
+	<link rel="stylesheet" href="assets/css/xenon-components.css">
+	<link rel="stylesheet" href="assets/css/xenon-skins.css">
+	<link rel="stylesheet" href="assets/css/custom.css">
+	<link rel="stylesheet" href="./css/cbl.css">
+	<link rel="stylesheet" href="./css/cbl.js">
+
+
+
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/index.js"></script>
+
+
+	<script src="assets/js/jquery-1.11.1.min.js"></script>
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="assets/js/html5shiv.min.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+	<![endif]-->
+
+
+</head>
+<body class="page-body">
+
+	<div class="settings-pane">
+
+		<a href="#" data-toggle="settings-pane" data-animate="true">
+			&times;
+		</a>
+
+		<div class="settings-pane-inner">
+
+			<div class="row">
+
+				<div class="col-md-4">
+
+					<div class="user-info">
+
+						<div class="user-image">
+							<a >
+								<img src="assets/images/logo.png" class="img-responsive img-circle" />
+							</a>
+						</div>
+
+						<div class="user-details">
+
+							<h3>
+								<a id="">admin</a>
+
+								<span class="user-status is-online"></span>
+							</h3>
+
+							<p class="user-title">管理员</p>
+
+							<div class="user-links">
+								<a  class="btn btn-primary">设置</a>
+								<a onclick="function quit() {
+								 window.location.href='login.html'
+								}
+								quit()" class="btn btn-success">退出</a>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="col-md-8 link-blocks-env">
+
+					<div class="links-block left-sep">
+						<h4>
+							<span>BST</span>
+						</h4>
+
+						<ul class="list-unstyled">
+							<li>
+								<input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk1" />
+								<label for="sp-chk1">1</label>
+							</li>
+							<li>
+								<input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk2" />
+								<label for="sp-chk2">2</label>
+							</li>
+							<li>
+								<input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk3" />
+								<label for="sp-chk3">3</label>
+							</li>
+							<li>
+								<input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk4" />
+								<label for="sp-chk4">4</label>
+							</li>
+						</ul>
+					</div>
+
+
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+	<div class="copyrights">Collect from <a   title="BST">BST</a></div>
+	<div class="page-container">
+
+
+<!--		<div class="sidebar-menu toggle-others fixed">-->
+		<div id="bt" class="sidebar-menu toggle-others fixed collapsed">
+
+			<div class="sidebar-menu-inner">
+				<!--<div id="bt"  class="sidebar-menu toggle-others fixed">-->
+				<!--<div id="bt" class="sidebar-menu toggle-others fixed collapsed">-->
+				<header class="logo-env">
+					<!-- logo -->
+					<div class="logo">
+						<a href="#" data-toggle="settings-pane" data-animate="true">
+							<img src="assets/images/logo.png" width="80" alt="" />
+						</a>
+							<p onclick="toggleSidebarMenu()"  style="font-size: 40px; float: left; margin-top: 20px;">BST &nbsp;&nbsp;&nbsp;&nbsp;</p>
+
+					</div>
+
+					<script>
+						function toggleSidebarMenu() {
+							let bt = document.getElementById("bt");
+							if (bt.classList.contains("sidebar-menu") &&
+									bt.classList.contains("toggle-others") &&
+									bt.classList.contains("fixed")) {
+								if (bt.classList.contains("collapsed")) {
+									bt.classList.remove("collapsed");
+								} else {
+									bt.classList.add("collapsed");
+								}
+							}
+						}
+
+					</script>
+
+
+					<div class="mobile-menu-toggle visible-xs">
+
+						<a href="#" data-toggle="mobile-menu">
+							<i class="fa-bars"></i>
+						</a>
+					</div>
+				</header>
+
+
+				<ul id="main-menu" class="main-menu">
+
+
+					<!-- add class "multiple-expanded" to allow multiple submenus to open -->
+					<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+					<li class="active opened active">
+						<a>
+							<i class="linecons-cog"></i>
+							<span class="title">文章管理</span>
+						</a>
+
+
+
+
+						<ul>
+							<li class="active">
+								<a onclick="add_article()" id="add_article">
+									<span class="title">添加文章</span>
+								</a>
+							</li>
+							<li>
+								<a onclick="update_article()">
+									<span class="title">修改文章</span>
+								</a>
+							</li>
+							<li>
+								<a onclick="from_article()">
+									<span class="title">文章管理</span>
+								</a>
+							</li>
+							<li>
+
+							</li>
+						</ul>
+					</li>
+
+
+					</script>
+					<li>
+						<a>
+							<i class="linecons-note"></i>
+							<span class="title">律师管理</span>
+						</a>
+						<ul>
+							<li>
+								<a onclick="add_lawyer()">
+									<span class="title">添加律师</span>
+								</a>
+							</li>
+							<li>
+								<a onclick="from_lawyer()">
+									<span class="title">律师查看</span>
+								</a>
+							</li>
+
+						</ul>
+					</li>
+
+
+
+
+					<li>
+						<a>
+							<i class="linecons-desktop"></i>
+							<span class="title">登入日志</span>
+						</a>
+						<ul>
+							<li>
+								<a onclick="from_login()">
+									<span class="title">上线日志</span>
+								</a>
+							</li>
+							<li>
+								<a  onclick="log_login()">
+									<span class="title">操作日志</span>
+								</a>
+								<a  onclick="PageView_login()">
+									<span class="title">网站访问量</span>
+								</a>
+							</li>
+
+						</ul>
+					</li>
+
+
+
+
+
+
+				</ul>
+			</div>
+
+
+		</div>
+
+
+		<div class="main-content" id="indexHtml1">
+
+
+		</div>
+		</div>
+
+
+
+
+
+</div>
+
+
+
+
+	<!-- Bottom Scripts -->
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/TweenMax.min.js"></script>
+	<script src="assets/js/resizeable.js"></script>
+	<script src="assets/js/joinable.js"></script>
+	<script src="assets/js/xenon-api.js"></script>
+	<script src="assets/js/xenon-toggles.js"></script>
+	<script src="assets/js/moment.min.js"></script>
+	<!-- Imported scripts on this page -->
+	<script src="assets/js/xenon-widgets.js"></script>
+	<script src="assets/js/devexpress-web-14.1/js/globalize.min.js"></script>
+	<script src="assets/js/devexpress-web-14.1/js/dx.chartjs.js"></script>
+	<script src="assets/js/toastr/toastr.min.js"></script>
+	<script src="assets/js/daterangepicker/daterangepicker.js"></script>
+	<script src="assets/js/datepicker/bootstrap-datepicker.js"></script>
+	<script src="assets/js/timepicker/bootstrap-timepicker.min.js"></script>
+	<script src="assets/js/colorpicker/bootstrap-colorpicker.min.js"></script>
+	<script src="assets/js/select2/select2.min.js"></script>
+	<script src="assets/js/jquery-ui/jquery-ui.min.js"></script>
+	<script src="assets/js/selectboxit/jquery.selectBoxIt.min.js"></script>
+	<script src="assets/js/tagsinput/bootstrap-tagsinput.min.js"></script>
+	<script src="assets/js/typeahead.bundle.js"></script>
+	<script src="assets/js/handlebars.min.js"></script>
+	<script src="assets/js/multiselect/js/jquery.multi-select.js"></script>
+	<!-- JavaScripts initializations and stuff -->
+	<script src="assets/js/xenon-custom.js"></script>
+
+	<!-- Imported styles on this page -->
+	<link rel="stylesheet" href="assets/js/daterangepicker/daterangepicker-bs3.css">
+	<link rel="stylesheet" href="assets/js/select2/select2.css">
+	<link rel="stylesheet" href="assets/js/select2/select2-bootstrap.css">
+	<link rel="stylesheet" href="assets/js/multiselect/css/multi-select.css">
+
+
+
+</body>
+<!--	对于界面进行一个动态加载-->
+<script type="module">
+
+
+
+
+	// 魔板替换 一开始显示用户访问界面
+
+	//---------------------------------------------------------------
+	// // 文章管理
+	import add_article1  from '../Yes/1_add_article.js'   //添加文章
+	window.add_article= function() {
+		add_article1.htmlMagic(document);
+	}
+
+
+	import update_article  from '../Yes/29_update_article.js'   //修改文章
+	window.update_article=function (){ //修改文章
+		update_article.htmlMagic(document);
+	}
+
+
+
+	import from_article  from '../Yes/21_from_article.js'   //查看文章
+
+	window.from_article=function (){//查询
+		from_article.htmlMagic(document);
+	}
+
+
+
+
+
+	//---------------------------------------------------------------
+
+
+
+	// <!--律师管理-->
+	import add_lawyer  from '../Yes/29_add_lawyer.js'
+	window.add_lawyer=function (){//添加
+		add_lawyer.htmlMagic(document)
+	}
+
+	import from_lawyer  from '../Yes/29_from_lawyer.js'
+	window.from_lawyer=function (){//查看
+		from_lawyer.htmlMagic(document)
+
+	}
+
+	//---------------------------------------------------------------
+
+
+	// 登入日志
+	import from_login1  from '../Yes/3_from_login.js'
+	window.from_login=function (){//查看上线日志
+		from_login1.htmlMagic(document);
+	}
+
+
+	import log_login  from '../Yes/29_log_login.js'
+	window.log_login=function (){ //查看操作日志
+		log_login.htmlMagic(document);
+	}
+
+
+
+	import onLine  from '../Yes/1_onLine.js'
+	window.PageView_login=function (){ //查看网站访问量
+		onLine.htmlMagic(document)
+	}
+
+
+
+//	设置一开始默认显示哪个界面
+
+	from_article.htmlMagic(document);
+
+</script>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<link href="https://unpkg.com/@wangeditor/editor@latest/dist/css/style.css" rel="stylesheet">-->
+<link rel="stylesheet" href="css/style.css">
+<style>
+    #editor—wrapper {
+        border: 1px solid #ccc;
+        z-index: 100; /* 按需定义 */
+    }
+    #toolbar-container { border-bottom: 1px solid #ccc; }
+    #editor-container { height: 500px; }
+</style>
+
+
+
+
+<div id="editor—wrapper">
+    <div id="toolbar-container"><!-- 工具栏 --></div>
+    <div id="editor-container"><!-- 编辑器 --></div>
+</div>
+
+<button onclick="yes()">生成</button>
+<div id="cc" style="  border: 1px solid black;">
+
+
+
+</div>
+
+
+
+
+<!--<script src="https://unpkg.com/@wangeditor/editor@latest/dist/index.js"></script>-->
+<script src="js/index.js"></script>   <!--配置文件的引入-->
+<script >
+    const { createEditor, createToolbar } = window.wangEditor
+
+    const editorConfig = {
+        MENU_CONF:{},
+        placeholder: 'Type here...',
+        onChange(editor) {
+            // const html = editor.getHtml()
+            // console.log('editor content', html)
+            // 也可以同步到 <textarea>
+        }
+    }
+
+
+
+    editorConfig.MENU_CONF['uploadImage'] = { //上传图片
+        fieldName: 'file',
+        server: 'http://127.0.0.1:9090/imgifile',
+
+
+        headers: {
+            Authorization: localStorage.getItem('key'),
+
+        },
+
+    }
+
+    const editor = createEditor({
+        selector: '#editor-container',
+        html: '<p1><br></p1>',
+        config: editorConfig,
+        mode: 'default', // or 'simple'
+    })
+
+    const toolbarConfig = {}
+
+    const toolbar = createToolbar({
+        editor,
+        selector: '#toolbar-container',
+        config: toolbarConfig,
+        mode: 'default', // or 'simple'
+    })
+
+
+
+
+
+   function  yes(){ //修改
+        console.log("你好啊");
+        let message=editor.getHtml(); // 获取编辑器的内容 并且压缩成一行
+        console.log(message)
+        document.getElementById("cc").innerHTML=message; // 将编辑器的内容显示到页面上
+    }
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

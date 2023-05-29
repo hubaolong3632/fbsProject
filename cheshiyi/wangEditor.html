@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+<!--    编译头文件-->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        #editor—wrapper {
+            border: 1px solid #ccc;
+            z-index: 100; /* 按需定义 */
+        }
+        #toolbar-container { border-bottom: 1px solid #ccc; }
+        #editor-container { height: 500px; }
+    </style>
+
+</head>
+<body>
+
+
+
+<!--编译器-->
+<div id="editor—wrapper">
+    <div id="toolbar-container"><!-- 工具栏 --></div>
+    <div id="editor-container"><!-- 编辑器 --></div>
+</div>
+
+<button onclick="yes()">生成</button>
+<div id="cc" style="  border: 1px solid black;">
+
+
+
+</div>
+
+<script src="js/index.js"></script>   <!--配置文件的引入-->
+
+
+
+<!--编译的js代码 -->
+<script type="module">
+
+
+
+
+
+    const { createEditor, createToolbar } = window.wangEditor
+
+    // 创建编辑器的配置
+    const editorConfig = {
+        MENU_CONF: {},
+        // placeholder: 'Type here...', // 编辑器的占位符
+        // onChange(editor) { // 编辑器内容发生改变回调函数
+        //     // const html = editor.getHtml() // 获取编辑器内容
+        //     // console.log('editor content', html) // 在控制台输出编辑器内容
+        //     // 也可以同步到 <textarea>
+        // }
+    }
+
+    // 创建编辑器
+    const editor = createEditor({
+        selector: '#editor-container', // 编辑器的容器元素
+        html: '<p><br></p>', // 编辑器默认的内容
+        config: editorConfig, // 编辑器的配置
+        mode: 'default', // 编辑器的模式，'default' 为有菜单和工具栏的全功能编辑器，'simple' 为只有菜单的简易编辑器。
+    })
+
+    // 创建菜单的配置
+    const toolbarConfig = {}
+
+    // 创建菜单工具栏
+    const toolbar = createToolbar({
+        editor, // 关联的编辑器实例
+        selector: '#toolbar-container', // 工具栏的容器元素
+        config: toolbarConfig, // 工具栏的配置
+        mode: 'default', // 工具栏的模式，'default' 为默认模式，'simple' 为只有菜单的简易模式。
+    })
+
+
+
+    window.yes=function (){ //修改
+        console.log("你好啊");
+        // let message=editor.getHtml().replace(/\n/g,""); // 获取编辑器的内容 并且压缩成一行
+        let message=editor.getHtml(); // 获取编辑器的内容 并且压缩成一行
+        console.log(message)
+        document.getElementById("cc").innerHTML=message; // 将编辑器的内容显示到页面上
+    }
+
+
+    // editorConfig.MENU_CONF['uploadImage'] = {
+    //     server: 'http://127.0.0.1:9090/multifile',
+    //
+    // }
+    // editorConfig.MENU_CONF['uploadImage'] = {
+    //     server: '/api/upload',
+    // }
+
+
+
+    //
+    // let editor = new wangEditor('#editor');
+    // editor.create();
+    // editor.config.uploadImgUrl = '/upload';  // 上传图片的接口地址
+
+</script>
+</body>
+</html>
