@@ -308,6 +308,7 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
                     "columnkey": "",
                     "columnvalue": "",
                     "name":"",
+                    "roughtext":""
                 },
             }
 
@@ -329,10 +330,11 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
             param.data.name = document.getElementById("select_name").value;
         console.log( param.data.name );
             param.data.title = document.getElementById("add_zt").value.slice(0, 100);  //主题 不能超过100个字符
-            param.data.abs = document.getElementById("subject").value.slice(0, 100)+"...";// 摘要  不能超过100个字符
+            param.data.abs = document.getElementById("subject").value.slice(0, 100);// 中等  不能超过100个字符
 
 
             param.data.text = editor.getHtml(); // 获取编辑器的内容 并且压缩成一行 内容
+            param.data.roughtext = editor.getText().slice(0, 30)+"...";
 
 
 

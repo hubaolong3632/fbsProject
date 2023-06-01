@@ -9,7 +9,7 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
     .parent-wrapper {
       display: flex;
       justify-content: space-between;
-      width: 78%;
+      width: 100%;
     }
     .my-sidebar-submenu {
       box-shadow: none;
@@ -65,7 +65,7 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
 
           </div>
 
-             <div class="col-sm-12 mailbox-right">
+             <div class="col-sm-9 mailbox-right">
                <div class="panel panel-default">
                <div style="width: calc(100% - 100px);margin-left: 30px;">
             <div>

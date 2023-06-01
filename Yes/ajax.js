@@ -22,7 +22,9 @@ let ajax={
 
                     headers: {
                         "Authorization":localStorage.getItem('key'),  //设置请求key
+
                     },
+
 
                     success: function (data) {
                         // console.log("当前:" + data.code)
