@@ -334,7 +334,7 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
 
 
             param.data.text = editor.getHtml(); // 获取编辑器的内容 并且压缩成一行 内容
-            param.data.roughtext = editor.getText().slice(0, 30)+"...";
+            param.data.roughtext = editor.getText().slice(0, 100)+"...";
 
 
 

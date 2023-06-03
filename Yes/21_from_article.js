@@ -158,6 +158,8 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
                 }
             }
 
+
+
             // 模拟数据
             let pageSize = 10; // 每页显示的记录条数
             let currentPage = 1; // 当前页码
@@ -170,7 +172,7 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
             for(let i = start; i < end; i++){
                 if(i >= dataAdd.length) break;
                 let item = dataAdd[i];
-                if(item.state=="已发布"){
+         if(item.state=="已发布"){
                     html += `<tr>
           <td style="padding: 10px;">${item.id}</td>
           <td style="padding: 10px;">${item.title}</td>
@@ -199,7 +201,7 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
             // 动态生成分页器
             let paginationHtml = '';
             if(totalPage > 1){ // 总页数大于1才显示分页器
-                paginationHtml += `<li class="page-item"><a class="page-link" href="#" data-page="prev">上一页</a></li>`;
+                paginationHtml += `<li class="page-item"><a class="page-link" href="#" data-page="prev" >上一页</a></li>`;
                 for(let i = 1; i <= totalPage; i++){
                     if(i == currentPage){
                         paginationHtml += `<li class="page-item active"><a class="page-link" href="#" data-page="${i}">${i}</a></li>`;
@@ -242,21 +244,33 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
                 for(let i = start; i < end; i++){
                     if(i >= dataAdd.length) break;
                     let item = dataAdd[i];
-                    html += `<tr>
+                    if(item.state=="已发布"){
+                        html += `<tr>
           <td style="padding: 10px;">${item.id}</td>
           <td style="padding: 10px;">${item.title}</td>
           <td style="padding: 10px;">${item.classesColumn}</td>
           <td style="padding: 10px;"><span style="margin-left: 10px;">${item.date}</span></td>
-          <td style="padding: 10px;"><button style="background-color:greenyellow;color:green;border:1px solid green;border-radius: 10px;margin-left: 10px;">${item.state}</button></td>
+          <td style="padding: 10px;"><button style="background-color:#55ff00;color:#111010;border:1px solid green;border-radius: 10px;margin-left: 10px;">${item.state}</button></td>
           <td><button style="padding: 0;margin: 0 10px;background-color: transparent;border: none;color: blue;">编辑</button></td>
-          <td><button style="margin-left: -10px;background-color: transparent;border: none;color: #b0215e;">彻底删除</button></td>
+          <td><button style="margin-left: -10px;background-color: transparent;border: none;color: red; ">彻底删除</button></td>
         </tr>`;
+                    }else{
+                        html += `<tr>
+          <td style="padding: 10px;">${item.id}</td>
+          <td style="padding: 10px;">${item.title}</td>
+          <td style="padding: 10px;">${item.classesColumn}</td>
+          <td style="padding: 10px;"><span style="margin-left: 10px;">${item.date}</span></td>
+          <td style="padding: 10px;"><button style="background-color:#d75a7b;color:#111010;border:1px solid green;border-radius: 10px;margin-left: 10px;">${item.state}</button></td>
+          <td><button style="padding: 0;margin: 0 10px;background-color: transparent;border: none;color: blue;">编辑</button></td>
+          <td><button style="margin-left: -10px;background-color: transparent;border: none;color: red; ">彻底删除</button></td>
+        </tr>`;
+                    }
                 }
                 $('#tableBody').html(html);
                 // 动态生成分页器
                 let paginationHtml = '';
                 if(totalPage > 1){ // 总页数大于1才显示分页器
-                    paginationHtml += `<li class="page-item"><a class="page-link" href="#" data-page="prev">上一页</a></li>`;
+                    paginationHtml += `<li class="page-item"><a class="page-link" href="#" data-page="prev" style="padding-left:1%">上一页</a></li>`;
                     for(let i = 1; i <= totalPage; i++){
                         if(i == currentPage){
                             paginationHtml += `<li class="page-item active"><a class="page-link" href="#" data-page="${i}">${i}</a></li>`;
@@ -268,6 +282,8 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
                 }
                 $('#pagination').html(paginationHtml);
             });
+
+            document.getElementById("pagination").style="";
 
         }
 
