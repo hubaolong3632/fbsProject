@@ -9,9 +9,55 @@ let ajax={
     }
     ,
 
+    ipReturn:function (){
+        return ip;
+    },
+
+
 
     //ajax 对于其他所有请求 带上密钥
     ajaxPromise:function (url,method,param,$) {
+        let pro = new Promise(function(resolve, reject) {
+            $.ajax({
+                url: ip + url,//请求ip加上请求地址
+                type: method,
+
+                dataType: "json",
+                data: param.data || '',
+
+                headers: {
+                    "Authorization":localStorage.getItem('key'),  //设置请求key
+
+                },
+
+
+                success: function (data) {
+
+
+                    if(data.code==9090){ //如果秘钥过期等等
+                        console.log("测试1:")
+                        console.log(data.code)
+                        window.location.href="login.html"
+                    }
+
+
+
+                    resolve(data);
+                },
+                error: function (error) {
+                    alert("获取资源错误,可能接口损坏")
+                    console.log(error)
+                    reject(error);
+                }
+            });
+        });
+
+        return pro;
+
+    },
+
+    //ajax 对于文件请求 把 processData和 contentType设置成false formData包含文件数据，而processData和contentType选项设置为false以确保正确处理数据。
+    ajaxFile:function (url,method,param,$) {
             let pro = new Promise(function(resolve, reject) {
                 $.ajax({
                      url: ip + url,//请求ip加上请求地址
@@ -19,6 +65,8 @@ let ajax={
 
                     dataType: "json",
                     data: param.data || '',
+                    processData: false,
+                    contentType: false,
 
                     headers: {
                         "Authorization":localStorage.getItem('key'),  //设置请求key
@@ -27,22 +75,15 @@ let ajax={
 
 
                     success: function (data) {
-                        // console.log("当前:" + data.code)
-                        // console.log(data)
-                        // console.log("测试1:")
-                        // console.log(data.data)
-
                         if(data.code==9090){ //如果秘钥过期等等
                             console.log("测试1:")
                             console.log(data.code)
                             window.location.href="login.html"
                         }
-
-
                         resolve(data);
                     },
                     error: function (error) {
-                        alert("错误")
+                        alert("文件上传错误")
                         console.log(error)
                         reject(error);
                     }
@@ -68,7 +109,7 @@ let ajax={
                     resolve(data);
                 },
                 error: function (error) {
-                    alert("错误")
+                    alert("登入接口错误")
                     console.log(error)
                     reject(error);
                 }

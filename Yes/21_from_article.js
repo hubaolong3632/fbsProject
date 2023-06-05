@@ -1,4 +1,6 @@
 import ajax1 from './ajax.js'
+import update_article_1  from '../Yes/1_update_article.js'
+
 //主页右侧替换(流量界面)
 let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
     //在这里写html代码
@@ -30,7 +32,7 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
               <div style="width: 250px; background-color: #fdfdfd;" >
                 <div class="my-sidebar"  style="background-color: #fdfdfd;">
                   <ul class="my-sidebar-menu" style="background-color: #fdfdfd;">
-                    <li class="my-sidebar-menu-header" onclick="init_init()">全部栏目</li>
+                    <li class="my-sidebar-menu-header" onclick="init_init()" style="cursor: pointer;">全部栏目</li>
                     <li class="my-sidebar-dropdown" style="background-color: #fdfdfd;">
                       <a href="#">新闻<i class="fa fa-caret-down"></i></a>
                       <ul class="my-sidebar-submenu">
@@ -71,9 +73,9 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
             <div>
               <div style="display: inline-block;">
                 <p style="display: inline-block; margin-right: 10px;">标题:</p>
-                <input type="text"style="width: 300px;border-radius: 5px;border: 1px solid slategray;">
+                <input id="text_from_input" type="text"style="width: 300px;border-radius: 5px;border: 1px solid slategray;">
               </div>
-              <button style="margin-left: 50px;width: 100px;background-color: rgb(255, 255, 255);border: 0.5px solid;border-radius: 5px;">查询</button>
+              <button onclick="fromArticle_title_Admin(this)"  style="margin-left: 50px;width: 100px;background-color: rgb(255, 255, 255);border: 0.5px solid;border-radius: 5px;">查询</button>
             </div>
 
             <!-- 表格容器 -->
@@ -118,7 +120,6 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
 
         //查询文章
         window.fromArticleTitle=async function (zj) {
-            // init_article("1");
             console.log(zj.innerText)
             //
             let element = zj.parentNode.parentNode.parentNode.querySelector("a").innerText; //获取父亲的父亲的父亲的a标签
@@ -143,9 +144,148 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
             let promise = await ajax1.ajaxPromise("artile/from", "post", "", $);//第一个的全部栏目
             init_article(promise);
         }
-        init_init(); //执行初始化
+        await init_init(); //执行初始化
 
 
+
+
+
+        //数据模板
+        function generateTableHTML(dataAdd) {
+            let html = '';
+            const buttonStyle = 'padding: 0;margin: 0 10px;background-color: transparent;border: none;';
+
+            for (let i = 0; i < dataAdd.length; i++) {
+                const { id, title, classesColumn, date, state } = dataAdd[i];
+                const buttonColor = (state === '已发布') ? '#55ff00' : '#d75a7b';
+                html += `
+              <tr>
+                <td style="padding: 10px;">${id}</td>
+                <td style="padding: 10px;">${title}</td>
+                <td style="padding: 10px;">${classesColumn}</td>
+                <td style="padding: 10px;"><span style="margin-left: 10px;">${date}</span></td>
+                <td style="padding: 10px;">
+                  <button onclick="state_update(this)" style="background-color:${buttonColor};color:#111010;border:1px solid green;border-radius: 10px;margin-left: 10px;">${state}</button>
+                </td>
+                <td>
+                  <button style="${buttonStyle}color: blue;" onclick="update_article_by(this)">编辑</button>
+                </td>
+                <td>
+                  <button style="${buttonStyle}color: red;" onclick="remove_article(this)">彻底删除</button>
+                </td>
+              </tr>`;
+            }
+            return html;
+        }
+        function modele(pageSize, currentPage, totalPage, start, end, dataAdd) {
+            // 计算需要生成的数据
+            const data = dataAdd.slice(start, end);
+            // 动态生成表格内容
+            const tableHTML = generateTableHTML(data);
+            return tableHTML;
+        }
+        //数据模板
+
+
+        //修改文章
+        window.update_article_by= async function (this_article){
+            let id = this_article.parentNode.parentNode.querySelectorAll("td")[0].innerText;
+            await update_article_1.htmlMagic(document,id);
+
+        }
+
+        //设置文章状态
+        window.state_update=  async function (this_article) {
+
+
+            let id = this_article.parentNode.parentNode.querySelectorAll("td")[0].innerText;
+            let title = this_article.parentNode.parentNode.querySelectorAll("td")[1].innerText;
+            let state = this_article.parentNode.parentNode.querySelectorAll("td")[4].innerText;
+
+
+            let article_delete = {
+                data: {
+                    "id": id,
+                    "state":state=="已发布"?"待发布":"已发布"
+                }
+
+            }
+            console.log(article_delete)
+
+            if (confirm(`确定修改文章:  ${title}   状态为  ${article_delete.data.state}  吗?`)) { //如果点击了修改
+                let sc = await ajax1.ajaxPromise("artile/update_id__state", "post", article_delete, $)
+                console.log(sc)
+                if (sc.code == 1) {
+                    if(article_delete.data.state=="已发布"){
+                        this_article.style.backgroundColor = "#55ff00";
+                        this_article.style.color = "#111010";
+                        this_article.style.border = "1px solid green";
+                        this_article.style.borderRadius = "10px";
+                        this_article.style.marginLeft = "10px";
+                        this_article.innerText = "已发布";
+                    }else{
+                        this_article.style.backgroundColor = "#d75a7b";
+                        this_article.style.color = "#111010";
+                        this_article.style.border = "1px solid green";
+                        this_article.style.borderRadius = "10px";
+                        this_article.style.marginLeft = "10px";
+                        this_article.innerText = "待发布";
+                    }
+
+                }else{
+                    alert("修改失败!")
+                }
+            }
+
+        }
+
+        //彻底删除代码
+       window.remove_article=  async function (this_article) {
+
+           let id = this_article.parentNode.parentNode.querySelectorAll("td")[0].innerText;
+           let title = this_article.parentNode.parentNode.querySelectorAll("td")[1].innerText;
+
+           let article_delete = {
+               data: {
+                   "id": id
+               }
+
+           }
+
+           if (confirm(`确定要删除文章:  ${title}    吗?`)) { //如果点击了全都
+               let sc = await ajax1.ajaxPromise("artile/delete_article", "post", article_delete, $)
+               if (sc.code == 1) {
+                   this_article.parentNode.parentNode.parentNode.removeChild(this_article.parentNode.parentNode); //删除当前记录
+               }
+               alert(sc.data);//删除文章输出状态
+           }
+
+       }
+
+
+        //模糊查询
+        window.fromArticle_title_Admin =  async function (from){
+
+         let text_from_input=   document.getElementById("text_from_input").value;
+         console.log(text_from_input)
+
+            let text_from={
+                data:{
+                    "title":text_from_input
+                }
+            }
+
+            let promise = await ajax1.ajaxPromise("artile/fromArticle_title_Admin", "post", text_from, $);//第一个的全部栏目
+
+            console.log(promise);
+
+            init_article(promise);
+
+
+        }
+
+
+        //初始化和数据替换
         function init_article(promise){
 
             let dataAdd = [];
@@ -160,6 +300,7 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
 
 
 
+
             // 模拟数据
             let pageSize = 10; // 每页显示的记录条数
             let currentPage = 1; // 当前页码
@@ -167,35 +308,9 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
             let start = (currentPage - 1) * pageSize; // 记录的起始位置
             let end = start + pageSize; // 记录的结束位置
 
-            // 动态生成表格内容
-            let html = '';
-            for(let i = start; i < end; i++){
-                if(i >= dataAdd.length) break;
-                let item = dataAdd[i];
-         if(item.state=="已发布"){
-                    html += `<tr>
-          <td style="padding: 10px;">${item.id}</td>
-          <td style="padding: 10px;">${item.title}</td>
-          <td style="padding: 10px;">${item.classesColumn}</td>
-          <td style="padding: 10px;"><span style="margin-left: 10px;">${item.date}</span></td>
-          <td style="padding: 10px;"><button style="background-color:#55ff00;color:#111010;border:1px solid green;border-radius: 10px;margin-left: 10px;">${item.state}</button></td>
-          <td><button style="padding: 0;margin: 0 10px;background-color: transparent;border: none;color: blue;">编辑</button></td>
-          <td><button style="margin-left: -10px;background-color: transparent;border: none;color: red; ">彻底删除</button></td>
-        </tr>`;
-                }else{
-                    html += `<tr>
-          <td style="padding: 10px;">${item.id}</td>
-          <td style="padding: 10px;">${item.title}</td>
-          <td style="padding: 10px;">${item.classesColumn}</td>
-          <td style="padding: 10px;"><span style="margin-left: 10px;">${item.date}</span></td>
-          <td style="padding: 10px;"><button style="background-color:#d75a7b;color:#111010;border:1px solid green;border-radius: 10px;margin-left: 10px;">${item.state}</button></td>
-          <td><button style="padding: 0;margin: 0 10px;background-color: transparent;border: none;color: blue;">编辑</button></td>
-          <td><button style="margin-left: -10px;background-color: transparent;border: none;color: red; ">彻底删除</button></td>
-        </tr>`;
-                }
-            }
-            //
-            // html += ``;
+
+           // 数据魔板替换
+           let html= modele( pageSize,currentPage ,totalPage ,start   ,end   , dataAdd);
             $('#tableBody').html(html);
 
             // 动态生成分页器
@@ -237,35 +352,12 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
                     default:
                         currentPage = page;
                 }
+
                 start = (currentPage - 1) * pageSize;
                 end = start + pageSize;
                 // 动态生成表格内容
-                let html = '';
-                for(let i = start; i < end; i++){
-                    if(i >= dataAdd.length) break;
-                    let item = dataAdd[i];
-                    if(item.state=="已发布"){
-                        html += `<tr>
-          <td style="padding: 10px;">${item.id}</td>
-          <td style="padding: 10px;">${item.title}</td>
-          <td style="padding: 10px;">${item.classesColumn}</td>
-          <td style="padding: 10px;"><span style="margin-left: 10px;">${item.date}</span></td>
-          <td style="padding: 10px;"><button style="background-color:#55ff00;color:#111010;border:1px solid green;border-radius: 10px;margin-left: 10px;">${item.state}</button></td>
-          <td><button style="padding: 0;margin: 0 10px;background-color: transparent;border: none;color: blue;">编辑</button></td>
-          <td><button style="margin-left: -10px;background-color: transparent;border: none;color: red; ">彻底删除</button></td>
-        </tr>`;
-                    }else{
-                        html += `<tr>
-          <td style="padding: 10px;">${item.id}</td>
-          <td style="padding: 10px;">${item.title}</td>
-          <td style="padding: 10px;">${item.classesColumn}</td>
-          <td style="padding: 10px;"><span style="margin-left: 10px;">${item.date}</span></td>
-          <td style="padding: 10px;"><button style="background-color:#d75a7b;color:#111010;border:1px solid green;border-radius: 10px;margin-left: 10px;">${item.state}</button></td>
-          <td><button style="padding: 0;margin: 0 10px;background-color: transparent;border: none;color: blue;">编辑</button></td>
-          <td><button style="margin-left: -10px;background-color: transparent;border: none;color: red; ">彻底删除</button></td>
-        </tr>`;
-                    }
-                }
+                // 数据魔板替换
+                let html= modele( pageSize,currentPage ,totalPage ,start   ,end   , dataAdd);
                 $('#tableBody').html(html);
                 // 动态生成分页器
                 let paginationHtml = '';

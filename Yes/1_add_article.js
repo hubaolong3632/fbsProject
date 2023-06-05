@@ -146,55 +146,12 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
               </div>
           </section>
 
-          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel">发布状态</h4>
-                </div>
-                <div class="modal-body" id="text_state">
-
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size:20px;">关闭</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <style>
-            .modal-dialog {
-              position: absolute;
-              left: 35%;
-              top: 2%;
-              transform: translate(-30%, -80%);
-            }
-             .modal-content {
-                      background-color: #e0dda3;
-               }
-
-            .modal-header {
-              background-color: #27AE60;
-              color: #fff;
-            }
-            .modal-body {
-              background-color: #ECECEC;
-              font-family: 'Open Sans', sans-serif;
-              font-size: 18px;
-            }
-            .modal-footer {
-              background-color: #fff;
-            }
-
-
-          </style>
 `,
     //在这里进行操作
     htmlMagic: async function (document1) {
 
-       // let ip1="http://127.0.0.1:9090/"  // 注意这里也有一个ip更换服务器需要更换当前ip
-       let ip1="http://00000.work:19099/"  // 注意这里也有一个ip更换服务器需要更换当前ip
+       // let ip1="http://00000.work:19099/"  // 注意这里也有一个ip更换服务器需要更换当前ip
+        let ip1 = ajax1.ipReturn();
 
         document1.getElementById("indexHtml1").innerHTML = this.html; //需要跳转的地址
 
@@ -249,13 +206,11 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
         let select_name = document.getElementById("select_name");
 
         let is_name = await ajax1.ajaxPromise("attorney/from_attorney_null_name", "post", "", $); //  记得把ajax打开
-        // console.log(is_name.data[0].name);
 
         for(let a of  is_name.data){
             select_name.innerHTML+=`
              <option value="${a.name}">${a.name}</option>
             `;
-            // console.log(a.name);
         }
 
 
@@ -368,20 +323,20 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
 
 
             let newVar = await ajax1.ajaxPromise("artile/add_artile", "post", param, $); //  记得把ajax打开
-            try {
-                //发布的内容区域
-                document.getElementById("text_state").innerHTML=`
-                 <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${newVar.msg} :${newVar.data.massage}</h3>
-                <a href="index.html?id=${newVar.data.id}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;查看文章:${param.data.title}</a>
-              `;
+            //设置弹窗内容
+            document.getElementById("show_message").innerHTML=`
+               <h2 class="text-center mb-4">${newVar.msg} :${newVar.data.massage}</h2>
+            <hr>
+               <a href="index.html?id=${newVar.data.id}" class="btn btn-primary d-block mx-auto mb-3">查看文章:${param.data.title}</a>
+            <hr>
+            `;
+            document.getElementById('modal-overlay').style.display = 'flex';//显示弹窗
 
-            }catch{
-                document.getElementById("text_state").innerHTML=`
-                 <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${newVar.msg} :${newVar.data}</h3>
-              `;
-            }
-            $("#myModal").modal();
-            document.querySelector('.modal-backdrop').remove();
+
+
+
+            // $("#myModal").modal();
+            // document.querySelector('.modal-backdrop').remove();
 
 
 

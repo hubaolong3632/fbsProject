@@ -62,10 +62,10 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
             for(let i=0;i<newVar.data.length; i++){
                 fromlog=fromlog+`
                  <tr>
-                    <td>${i+1}</td>
-                    <td>${newVar.data[i].date}</td>
-                    <td>${newVar.data[i].ip}</td>
-                    <td>${newVar.data[i].name}</td>
+                    <td style="width: 10%">${i+1}</td>
+                    <td style="width: 15%">${newVar.data[i].date}</td>
+                    <td  style="width:20%; color: #00e367">${newVar.data[i].ip}</td>
+                    <td  style="width: 20%">${newVar.data[i].name}</td>
                  </tr>
                 `
             }

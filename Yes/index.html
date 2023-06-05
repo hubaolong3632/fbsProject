@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 	<script>
 		if(localStorage.getItem('key')==""){
          		window.location.href="login.html"
@@ -8,6 +9,79 @@
 
 
 	</script>
+
+	<style>
+
+
+		/* 添加遮罩窗体 */
+		/* 弹窗背景遮罩 */
+		#modal-overlay {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.6);
+			display: none;
+			z-index: 999;
+		}
+
+		/* 弹窗本体 */
+		#modal {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: #fff;
+			width: 400px;
+			padding: 20px;
+			text-align: center;
+		}
+
+		/* 关闭按钮 */
+		#hide-modal {
+			display: inline-block;
+			padding: 10px 20px;
+			background-color: #f00;
+			color: #fff;
+			border: none;
+			margin-top: 20px;
+			cursor: pointer;
+		}
+
+		/* 点击按钮显示弹窗 */
+		#show-modal {
+			display: inline-block;
+			padding: 10px 20px;
+			/* background-color: #333; */
+			background-color: green;
+			color: #fff;
+			border: none;
+			margin-top: 20px;
+			cursor: pointer;
+			border-radius: 5px; /*新增的圆角设置*/
+			/* 设置在浏览器右下角显示 */
+			position: fixed;
+			bottom: 20px;
+			right: 20px;
+		}
+
+		/* 点击遮罩关闭弹窗 */
+		#modal-overlay:target {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		#modal-overlay:target #modal {
+			display: block;
+		}
+
+		#modal-overlay:target #hide-modal {
+			display: block;
+		}
+	</style>
+
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -17,6 +91,17 @@
 
 	<title>BST后台界面</title>
 	<link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -30,7 +115,11 @@
 	<link rel="stylesheet" href="assets/css/xenon-skins.css">
 	<link rel="stylesheet" href="assets/css/custom.css">
 	<link rel="stylesheet" href="./css/cbl.css">
-	<link rel="stylesheet" href="./css/cbl.js">
+<!--	<link rel="stylesheet" href="./css/cbl.js">-->
+
+
+
+
 
 
 
@@ -49,6 +138,36 @@
 
 </head>
 <body class="page-body">
+
+
+
+
+
+
+
+
+
+<!--		弹窗-->
+<div id="modal-overlay" >
+	<div id="modal" class="bg-light p-5 rounded">
+		<button type="button" class="close" onclick="document.getElementById('modal-overlay').style.display = 'none'" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+
+
+<!--		内容显示框-->
+		<div id="show_message">
+
+
+
+		</div>
+		<input  onclick="document.getElementById('modal-overlay').style.display = 'none';" type="button" value="关闭" class="btn btn-secondary d-block mx-auto">
+
+	</div>
+</div>
+
+
+
 
 	<div class="settings-pane">
 
@@ -196,11 +315,11 @@
 									<span class="title">添加文章</span>
 								</a>
 							</li>
-							<li>
-								<a onclick="update_article()">
-									<span class="title">修改文章</span>
-								</a>
-							</li>
+<!--							<li>-->
+<!--								<a onclick="update_article()">-->
+<!--									<span class="title">修改文章</span>-->
+<!--								</a>-->
+<!--							</li>-->
 							<li>
 								<a onclick="from_article()">
 									<span class="title">文章管理</span>
@@ -227,7 +346,7 @@
 							</li>
 							<li>
 								<a onclick="from_lawyer()">
-									<span class="title">律师查看</span>
+									<span class="title">律师管理</span>
 								</a>
 							</li>
 
@@ -270,6 +389,9 @@
 
 
 		</div>
+
+
+
 
 
 		<div class="main-content" id="indexHtml1">
@@ -339,11 +461,6 @@
 	}
 
 
-	import update_article  from '../Yes/29_update_article.js'   //修改文章
-	window.update_article=function (){ //修改文章
-		update_article.htmlMagic(document);
-	}
-
 
 
 	import from_article  from '../Yes/21_from_article.js'   //查看文章
@@ -383,7 +500,7 @@
 
 
 	import log_login  from '../Yes/29_log_login.js'
-	window.log_login=function (){ //查看操作日志
+	window.log_login=function(){ //查看操作日志
 		log_login.htmlMagic(document);
 	}
 
@@ -398,8 +515,12 @@
 
 //	设置一开始默认显示哪个界面
 
-	from_article.htmlMagic(document);
-
+	// add_article1.htmlMagic(document);
+	// update_article.htmlMagic(document,170);
+	from_lawyer.htmlMagic(document);
 </script>
 
 </html>
+
+
+
