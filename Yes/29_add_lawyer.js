@@ -56,7 +56,8 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
      <label  name="show_ys" class="col-sm-1 control-label" for="field-4">个人头像</label>
 
      <div class="col-sm-10">
-      <input type="file" class="form-control" id="img"  defaultValue="选择头像">
+<!--      <input type="file" class="form-control" id="img"  defaultValue="选择头像">-->
+      <input type="file" class="form-control" id="img" accept="image/*" defaultValue="选择头像">
       
      <img  id="img_file" src="" height="15%" width="10%">
      </div>
@@ -195,7 +196,7 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
                 data:  formData
             }
             //  图片回显
-            let promise = await ajax1.ajaxFile("imgifile","post",attorneyImg,$);
+            let promise = await ajax1.ajaxFile("multiFileAttorney","post",attorneyImg,$);
             document.getElementById("img_file").src=promise.data.href;
 
         });
