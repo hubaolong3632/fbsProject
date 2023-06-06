@@ -152,6 +152,7 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
 
         //数据模板
         function generateTableHTML(dataAdd) {
+
             let html = '';
             const buttonStyle = 'padding: 0;margin: 0 10px;background-color: transparent;border: none;';
 

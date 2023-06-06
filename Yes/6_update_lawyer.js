@@ -9,7 +9,7 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
      
 <div class="panel panel-default">
   <div class="panel-heading">
-   <h3 class="panel-title">添加律师</h3>
+   <h3 class="panel-title">修改律师</h3>
    <div class="panel-options">
     <a href="#" data-toggle="panel">
      <span class="collapse-icon">–</span>
@@ -28,7 +28,7 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
      <label  name="show_ys" class="col-sm-1 control-label" for="field-1" >姓名</label>
 
      <div class="col-sm-10">
-      <input id="name" type="text" class="form-control" id="field-1">
+      <input id="name" type="text" class="form-control" id="field-1" readonly>
      </div>
     </div>
     
@@ -180,8 +180,29 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
      `,
 
     //在这里进行操作
-    htmlMagic: async function (document1) {
+    htmlMagic: async function (document1,id) {
         document1.getElementById("indexHtml1").innerHTML = this.html; //需要跳转的地址
+
+
+
+        let promise = await ajax1.ajaxFile(`attorney/AttorneyService_from_san_id?id=${id}`,"post","",$);
+
+        for(let name of promise.data.attorneyDaoModels){
+            console.log(name);
+
+            document1.getElementById("name").value=            name.name;
+            document1.getElementById("partner").value=          name.partner;
+            document1.getElementById("signatare").value=        name.signatare;
+            document1.getElementById("phone").value=            name.phone;
+            document1.getElementById("mail").value=             name.mail;
+            document1.getElementById("img_file").src=           name.img;
+            document1.getElementById("essential").value=        name.essential;
+            document1.getElementById("workexperience").value=   name.workexperience;
+            document1.getElementById("representative").value=   name.representative;
+            document1.getElementById("educational").value=      name.educational;
+            document1.getElementById("cn").value=               name.cn;
+        }
+
 
 
 
@@ -189,7 +210,6 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
 
         //图片的上传
         document.getElementById('img').addEventListener('change', async function (event) {
-
             //设置文件
             let formData = new FormData();
             formData.append('file',event.target.files[0]);
@@ -202,10 +222,11 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
 
         });
 
-
+        //进行代码的修改地方
         window.lawyerAdd=async function () {
             let attorney = {
                 data: {
+                    "id":id,
                     "name": "",
                     "partner": "",
                     "signatare": "",
@@ -239,11 +260,18 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
 
             let sum_massage=0;
             for (let key in attorney.data) {
-                if (attorney.data[key] === "") {
+                if(key=="id") continue;
+
+
+                if ( attorney.data[key] === "") {
                     //设置字体名字为红色
                     sum_massage++;
                     document.getElementById(key).parentNode.parentNode.querySelector("[name='show_ys']").style.color = "red"
                 }else{
+                    // console.log(key)
+                    // if(key=="id") continue;
+                    // console.log(key)
+
                     document.getElementById(key).parentNode.parentNode.querySelector("[name='show_ys']").style.color = "#808080"
 
                 }
@@ -277,17 +305,16 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
 
 
 
-            let newVar = await ajax1.ajaxPromise("attorney/insert_attorney", "post", attorney, $); //  记得把ajax打开
-
+            let newVar = await ajax1.ajaxPromise("attorney/update_attorney_id", "post", attorney, $); //  记得把ajax打开
 
             // console.log(attorney)
             // console.log(newVar)
             if(newVar.code==1){
                 //设置弹窗内容
                 document.getElementById("show_message").innerHTML=`
-               <h2 class="text-center mb-4">${newVar.msg} : 律师添加成功</h2>
+               <h2 class="text-center mb-4">${newVar.msg} : 律师修改成功</h2>
                 <hr>
-                      <a href="index.html?id=${newVar.data}" class="btn btn-primary d-block mx-auto mb-3">查看律师</a>
+                      <a href="index.html?id=${id}" class="btn btn-primary d-block mx-auto mb-3">查看律师</a>
                 <hr>
             `;
 
