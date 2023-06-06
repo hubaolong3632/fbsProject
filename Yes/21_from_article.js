@@ -6,11 +6,20 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
     //在这里写html代码
     html:` 
   <style>
-
+    .panel {
+        position: relative;
+        background: #ffffff;
+        padding: 64px 40px;
+        border: 0;
+        margin-bottom: 30px;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
 
     .parent-wrapper {
       display: flex;
-      justify-content: space-between;
+      /*justify-content: space-between;*/
       width: 100%;
     }
     .my-sidebar-submenu {
@@ -24,8 +33,8 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
   </style>
  
     <div class="parent-wrapper">
-          <div class="col-sm-3 mailbox-right">
-            <div class="panel panel-default">
+
+     <div class="panel panel-default">
 
 
 
@@ -64,10 +73,7 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
                 </div>
               </div>
             </div>
-
-          </div>
-
-             <div class="col-sm-9 mailbox-right">
+             <div class="col-sm-9 mailbox-right" style="width: 85%">
                <div class="panel panel-default">
                <div style="width: calc(100% - 100px);margin-left: 30px;">
             <div>
@@ -84,6 +90,7 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
               <tr>
                 <th style="" >ID</th>
                 <th style="">标题</th>
+                <th style="">发布人</th>
                 <th style="">栏目</th>
                 <th style="">发布日期</th>
                 <th style="">状态</th>
@@ -98,7 +105,7 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
 
             <!-- 分页器容器 -->
             <nav>
-              <ul class="pagination" id="pagination" style="height: 40px;overflow: auto;padding-left:80%;">
+              <ul class="pagination" id="pagination" style="height: 40px;overflow: auto;padding-left:80%; ">
                 <!-- 动态生成分页器 -->
               </ul>
             </nav>
@@ -157,12 +164,13 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
             const buttonStyle = 'padding: 0;margin: 0 10px;background-color: transparent;border: none;';
 
             for (let i = 0; i < dataAdd.length; i++) {
-                const { id, title, classesColumn, date, state } = dataAdd[i];
+                const { id, name,title, classesColumn, date, state } = dataAdd[i];
                 const buttonColor = (state === '已发布') ? '#55ff00' : '#d75a7b';
                 html += `
               <tr>
-                <td style="padding: 10px;">${id}</td>
-                <td style="padding: 10px;">${title}</td>
+                 <td style="padding: 10px;">${id}</td>
+                 <td style="padding: 10px;">${title}</td>
+                <td style="padding: 10px;">${name}</td>
                 <td style="padding: 10px;">${classesColumn}</td>
                 <td style="padding: 10px;"><span style="margin-left: 10px;">${date}</span></td>
                 <td style="padding: 10px;">

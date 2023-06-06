@@ -56,12 +56,13 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
      <label  name="show_ys" class="col-sm-1 control-label" for="field-4">个人头像</label>
 
      <div class="col-sm-10">
-<!--      <input type="file" class="form-control" id="img"  defaultValue="选择头像">-->
       <input type="file" class="form-control" id="img" accept="image/*" defaultValue="选择头像">
       
-     <img  id="img_file" src="" height="15%" width="10%">
+     <img id="img_file" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" height="15%" width="10%">
      </div>
     </div>
+    
+    
     
     
 
@@ -149,12 +150,14 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
 
     <div class="form-group-separator"></div>
     <div class="form-group-separator"></div>
-    <div class="form-group-separator">
-
-          <input type="button" class="form-control btn btn-success" id="partner" value="提交" onclick="lawyerAdd()">
-
-    
-        </div>
+ <div class="form-group-separator">
+      <div class="col-sm-6">
+        <input type="button" class="form-control btn btn-primary" id="partner1" value="清空" onclick="delete_lawyerAdd()">
+      </div>
+      <div class="col-sm-6">
+        <input type="button" class="form-control btn btn-success" id="partner" value="提交" onclick="lawyerAdd()">
+      </div>
+</div>
 
 
 
@@ -200,6 +203,21 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
             document.getElementById("img_file").src=promise.data.href;
 
         });
+
+        window.delete_lawyerAdd=async  function () {
+            document1.getElementById("name").value=           "";
+            document1.getElementById("partner").value=        "";
+            document1.getElementById("signatare").value=      "";
+            document1.getElementById("phone").value=          "";
+            document1.getElementById("mail").value=           "";
+
+            document1.getElementById("essential").value=      "";
+            document1.getElementById("workexperience").value= "";
+            document1.getElementById("representative").value= "";
+            document1.getElementById("educational").value=    "";
+            document1.getElementById("cn").value=             "";
+        }
+
 
 
         window.lawyerAdd=async function () {

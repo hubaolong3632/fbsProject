@@ -52,7 +52,7 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
                     </div>
 
                     <div class="form-group">
-                      <label for="subject" _msttexthash="13525915" _msthash="174">摘要：</label>
+                      <label for="subject" _msttexthash="13525915" _msthash="174">次主题：</label>
                       <input type="text" class="form-control" id="subject" tabindex="1">
                       <p style="color: red" id="p_zy"></p>
                     </div>

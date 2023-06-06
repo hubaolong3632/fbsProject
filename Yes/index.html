@@ -287,7 +287,8 @@
 
 
 <!--		<div class="sidebar-menu toggle-others fixed">-->
-		<div id="bt" class="sidebar-menu toggle-others fixed collapsed">
+<!--		<div id="bt" class="sidebar-menu toggle-others fixed collapsed">-->
+		<div id="bt" class="sidebar-menu toggle-others fixed">
 
 			<div class="sidebar-menu-inner">
 				<!--<div id="bt"  class="sidebar-menu toggle-others fixed">-->
@@ -311,6 +312,7 @@
 								if (bt.classList.contains("collapsed")) {
 									bt.classList.remove("collapsed");
 								} else {
+
 									bt.classList.add("collapsed");
 								}
 							}
@@ -331,20 +333,18 @@
 				<ul id="main-menu" class="main-menu">
 
 
-					<!-- add class "multiple-expanded" to allow multiple submenus to open -->
-					<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 					<li class="active opened active">
 						<a>
-							<i class="linecons-cog"></i>
+							<i class="linecons-note"></i>
 							<span class="title">文章管理</span>
 						</a>
 
 
-
-
 						<ul>
+
+
 							<li>
-								<a onclick="from_article()">
+								<a onclick="from_article1()">
 									<span class="title">文章管理</span>
 								</a>
 							</li>
@@ -363,20 +363,20 @@
 					</li>
 
 
-					</script>
+
 					<li>
 						<a>
-							<i class="linecons-note"></i>
+							<i class="linecons-cog"></i>
 							<span class="title">律师管理</span>
 						</a>
 						<ul>
 							<li>
-								<a onclick="from_lawyer()">
+								<a onclick="from_lawyer1()">
 									<span class="title">律师管理</span>
 								</a>
 							</li>
 							<li>
-								<a onclick="add_lawyer()">
+								<a onclick="add_lawyer1()">
 									<span class="title">添加律师</span>
 								</a>
 							</li>
@@ -384,7 +384,6 @@
 
 						</ul>
 					</li>
-
 
 
 
@@ -399,19 +398,24 @@
 									<span class="title">上线日志</span>
 								</a>
 							</li>
-							<li>
-								<a  onclick="log_login()">
+
+							<li >
+								<a  onclick="log_login1()">
 									<span class="title">操作日志</span>
 								</a>
-<!--								<a  onclick="PageView_login()">-->
-<!--									<span class="title">网站访问量</span>-->
-<!--								</a>-->
 							</li>
 
 						</ul>
 					</li>
 
 
+<!--					卡bug-->
+					<li>
+						<a>
+
+						</a>
+
+					</li>
 
 
 
@@ -498,7 +502,7 @@
 
 	import from_article  from './21_from_article.js'   //查看文章
 
-	window.from_article=function (){//查询
+	window.from_article1=function (){//查询
 		from_article.htmlMagic(document);
 	}
 
@@ -512,12 +516,12 @@
 
 	// <!--律师管理-->
 	import add_lawyer  from './29_add_lawyer.js'
-	window.add_lawyer=function (){//添加
+	window.add_lawyer1=function (){//添加
 		add_lawyer.htmlMagic(document)
 	}
 
 	import from_lawyer  from './29_from_lawyer.js'
-	window.from_lawyer=function (){//查看
+	window.from_lawyer1=function (){//查看
 		from_lawyer.htmlMagic(document)
 
 	}
@@ -533,7 +537,7 @@
 
 
 	import log_login  from './29_log_login.js'
-	window.log_login=function(){ //查看操作日志
+	window.log_login1=function(){ //查看操作日志
 		log_login.htmlMagic(document);
 	}
 
