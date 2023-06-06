@@ -1,5 +1,5 @@
 import ajax1 from './ajax.js'
-import update_article_1  from '../Yes/1_update_article.js'
+import update_article_1  from './1_update_article.js'
 
 //主页右侧替换(流量界面)
 let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
@@ -192,6 +192,8 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
         window.update_article_by= async function (this_article){
             let id = this_article.parentNode.parentNode.querySelectorAll("td")[0].innerText;
             await update_article_1.htmlMagic(document,id);
+
+
 
         }
 

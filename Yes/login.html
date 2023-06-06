@@ -107,6 +107,14 @@
 
     import ajax1 from './ajax.js'
 
+
+    let login_name1 = localStorage.getItem('login_name');
+    let login_password1 = localStorage.getItem('login_password');
+    if(login_name1!=null){
+        document.getElementById("zh").value=login_name1;
+        document.getElementById("mm").value=login_password1;
+    }
+
       window.login=async function () { //登入
 
 
@@ -122,8 +130,14 @@
           console.log(json);
           if (json.code == 1) { //验证成功
               localStorage.setItem('key', json.data.key); //保存到秘钥
-              // localStorage.setItem('name', json.data.name); //保存名称
-              // localStorage.setItem('jurisdiction', json.data.jurisdiction); //保存权限
+              localStorage.setItem('name', json.data.name); //保存名称
+              localStorage.setItem('jurisdiction', json.data.jurisdiction); //保存权限
+
+              localStorage.setItem('login_name', password.data.username);
+              localStorage.setItem('login_password', password.data.password);
+
+
+
               window.location.href='index.html'
           }else{
               document.getElementById("no").innerText=json.msg;//各种失败原因

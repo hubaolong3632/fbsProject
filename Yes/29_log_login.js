@@ -1,4 +1,4 @@
-import ajax  from '../Yes/ajax.js' //网站访问量
+import ajax  from './ajax.js' //网站访问量
 //主页右侧替换(流量界面)
 let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
     //在这里写html代码
@@ -30,14 +30,12 @@ table td{
                     <i class="fa-rotate-right"></i>
                 </a>
 
-                <a href="#" data-toggle="remove">
-                    ×
-                </a>
+           
             </div>
         </div>
         <div class="panel-body">
 
-            <div class="table-wrapper"><div class="btn-toolbar"><div class="btn-group focus-btn-group"><button class="btn btn-default"><span class="fa-asterisk"></span>日志</button></div><div class="btn-group dropdown-btn-group pull-right"><ul class="dropdown-menu"><li class="checkbox-row"><div class="cbr-replaced cbr-checked"><div class="cbr-input"><input type="checkbox" name="toggle-id7d9ed170d5676-col-1" id="toggle-id7d9ed170d5676-col-1" value="id7d9ed170d5676-col-1" class="cbr cbr-done"></div><div class="cbr-state"><span></span></div></div> <label for="toggle-id7d9ed170d5676-col-1">Last Trade</label></li><li class="checkbox-row"><div class="cbr-replaced cbr-checked"><div class="cbr-input"><input type="checkbox" name="toggle-id7d9ed170d5676-col-2" id="toggle-id7d9ed170d5676-col-2" value="id7d9ed170d5676-col-2" class="cbr cbr-done"></div><div class="cbr-state"><span></span></div></div> <label for="toggle-id7d9ed170d5676-col-2">Trade Time</label></li><li class="checkbox-row"><div class="cbr-replaced cbr-checked"><div class="cbr-input"><input type="checkbox" name="toggle-id7d9ed170d5676-col-3" id="toggle-id7d9ed170d5676-col-3" value="id7d9ed170d5676-col-3" class="cbr cbr-done"></div><div class="cbr-state"><span></span></div></div> <label for="toggle-id7d9ed170d5676-col-3">Change</label></li><li class="checkbox-row"><div class="cbr-replaced cbr-checked"><div class="cbr-input"><input type="checkbox" name="toggle-id7d9ed170d5676-col-4" id="toggle-id7d9ed170d5676-col-4" value="id7d9ed170d5676-col-4" class="cbr cbr-done"></div><div class="cbr-state"><span></span></div></div> <label for="toggle-id7d9ed170d5676-col-4">Prev Close</label></li><li class="checkbox-row"><div class="cbr-replaced cbr-checked"><div class="cbr-input"><input type="checkbox" name="toggle-id7d9ed170d5676-col-5" id="toggle-id7d9ed170d5676-col-5" value="id7d9ed170d5676-col-5" class="cbr cbr-done"></div><div class="cbr-state"><span></span></div></div> <label for="toggle-id7d9ed170d5676-col-5">Open</label></li><li class="checkbox-row"><div class="cbr-replaced cbr-checked"><div class="cbr-input"><input type="checkbox" name="toggle-id7d9ed170d5676-col-6" id="toggle-id7d9ed170d5676-col-6" value="id7d9ed170d5676-col-6" class="cbr cbr-done"></div><div class="cbr-state"><span></span></div></div> <label for="toggle-id7d9ed170d5676-col-6">Bid</label></li></ul></div></div><div class="table-responsive" data-pattern="priority-columns" data-focus-btn-icon="fa-asterisk" data-sticky-table-header="true" data-add-display-all-btn="true" data-add-focus-btn="true">
+            <div class="table-wrapper"><div class="btn-toolbar"><div class="btn-group focus-btn-group"><button class="btn btn-default"><span class="fa-asterisk"></span>操作日志</button></div><div class="btn-group dropdown-btn-group pull-right"><ul class="dropdown-menu"><li class="checkbox-row"><div class="cbr-replaced cbr-checked"><div class="cbr-input"><input type="checkbox" name="toggle-id7d9ed170d5676-col-1" id="toggle-id7d9ed170d5676-col-1" value="id7d9ed170d5676-col-1" class="cbr cbr-done"></div><div class="cbr-state"><span></span></div></div> <label for="toggle-id7d9ed170d5676-col-1">Last Trade</label></li><li class="checkbox-row"><div class="cbr-replaced cbr-checked"><div class="cbr-input"><input type="checkbox" name="toggle-id7d9ed170d5676-col-2" id="toggle-id7d9ed170d5676-col-2" value="id7d9ed170d5676-col-2" class="cbr cbr-done"></div><div class="cbr-state"><span></span></div></div> <label for="toggle-id7d9ed170d5676-col-2">Trade Time</label></li><li class="checkbox-row"><div class="cbr-replaced cbr-checked"><div class="cbr-input"><input type="checkbox" name="toggle-id7d9ed170d5676-col-3" id="toggle-id7d9ed170d5676-col-3" value="id7d9ed170d5676-col-3" class="cbr cbr-done"></div><div class="cbr-state"><span></span></div></div> <label for="toggle-id7d9ed170d5676-col-3">Change</label></li><li class="checkbox-row"><div class="cbr-replaced cbr-checked"><div class="cbr-input"><input type="checkbox" name="toggle-id7d9ed170d5676-col-4" id="toggle-id7d9ed170d5676-col-4" value="id7d9ed170d5676-col-4" class="cbr cbr-done"></div><div class="cbr-state"><span></span></div></div> <label for="toggle-id7d9ed170d5676-col-4">Prev Close</label></li><li class="checkbox-row"><div class="cbr-replaced cbr-checked"><div class="cbr-input"><input type="checkbox" name="toggle-id7d9ed170d5676-col-5" id="toggle-id7d9ed170d5676-col-5" value="id7d9ed170d5676-col-5" class="cbr cbr-done"></div><div class="cbr-state"><span></span></div></div> <label for="toggle-id7d9ed170d5676-col-5">Open</label></li><li class="checkbox-row"><div class="cbr-replaced cbr-checked"><div class="cbr-input"><input type="checkbox" name="toggle-id7d9ed170d5676-col-6" id="toggle-id7d9ed170d5676-col-6" value="id7d9ed170d5676-col-6" class="cbr cbr-done"></div><div class="cbr-state"><span></span></div></div> <label for="toggle-id7d9ed170d5676-col-6">Bid</label></li></ul></div></div><div class="table-responsive" data-pattern="priority-columns" data-focus-btn-icon="fa-asterisk" data-sticky-table-header="true" data-add-display-all-btn="true" data-add-focus-btn="true">
 
                 <div class="sticky-table-header fixed-solution" style="height: 44px; visibility: hidden; width: auto; top: -1px;"><table cellspacing="0" class="table table-small-font table-bordered table-striped" id="id7d9ed170d5676-clone">
                   
@@ -70,8 +68,8 @@ table td{
             for(let i=0;i<newVar.data.length; i++){
                 fromlog=fromlog+`
                  <tr>
-                    <td>${i+1}</td>
-                    <td   style="width:20%; color: #55ff00"  >${newVar.data[i].operate}</td>
+                    <td>${i + 1}</td>
+                    <td   style="width:20%; color: #0c6ec0"  >${newVar.data[i].operate}</td>
                     <td>${newVar.data[i].text}</td>
                     <td>${newVar.data[i].table}</td>
                     <td>${newVar.data[i].date}</td>

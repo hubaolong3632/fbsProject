@@ -19,44 +19,79 @@
 
 
 <script>
-    console.log(localStorage.getItem('key'));
     $.ajax({
-        type: "post",        // 请求方式
-        url: "http://00000.work:19099/login1?username=admin&password=admin", // 请求路径
-        dataType: "json",   // 预期返回一个 json 类型数据
+        url: "http://00000.work:19099/artile/fromArticle_ClassesAndColumn_Admin?classes=业绩&column=知识产权",
+        type: "post",
+
+        dataType: "json",
+        data: '',
 
         headers: {
             "Authorization":localStorage.getItem('key'),  //设置请求key
         },
 
-        success: function (data) {   // data是形参名，代表返回的数据
+
+        success: function (data) {
+
+
+            if(data.code==9090){ //如果秘钥过期等等
+                console.log("测试1:")
+                console.log(data.code)
+                window.location.href="login.html"
+            }
             alert(data)
-            console.log(data.data.key)
-            localStorage.setItem('key',data.data.key),  //设置请求key
-            alert("成功")
+
         },
-        error: function() {
-            alert("错误");
-        }})
+        error: function (error) {
+            alert("获取资源错误,可能接口损坏")
+            console.log(error)
+        }
+    });
 
 
-    console.log(localStorage.getItem('key'));
-    $.ajax({
-        type: "post",        // 请求方式
-        url: "http://00000.work:19099/fromLog", // 请求路径
-        dataType: "json",   // 预期返回一个 json 类型数据
 
-        headers: {
-            "Authorization":localStorage.getItem('key'),  //设置请求key
-        },
 
-        success: function (data) {   // data是形参名，代表返回的数据
-            alert(data)
-           alert("成功")
-        },
-        error: function() {
-            alert("错误");
-        }})
+
+    //
+    //
+    // console.log(localStorage.getItem('key'));
+    // $.ajax({
+    //     type: "post",        // 请求方式
+    //     url: "http://00000.work:19099/login1?username=admin&password=admin", // 请求路径
+    //     dataType: "json",   // 预期返回一个 json 类型数据
+    //
+    //     headers: {
+    //         "Authorization":localStorage.getItem('key'),  //设置请求key
+    //     },
+    //
+    //     success: function (data) {   // data是形参名，代表返回的数据
+    //         alert(data)
+    //         console.log(data.data.key)
+    //         localStorage.setItem('key',data.data.key),  //设置请求key
+    //         alert("成功")
+    //     },
+    //     error: function() {
+    //         alert("错误");
+    //     }})
+    //
+    //
+    // console.log(localStorage.getItem('key'));
+    // $.ajax({
+    //     type: "post",        // 请求方式
+    //     url: "http://00000.work:19099/fromLog", // 请求路径
+    //     dataType: "json",   // 预期返回一个 json 类型数据
+    //
+    //     headers: {
+    //         "Authorization":localStorage.getItem('key'),  //设置请求key
+    //     },
+    //
+    //     success: function (data) {   // data是形参名，代表返回的数据
+    //         alert(data)
+    //        alert("成功")
+    //     },
+    //     error: function() {
+    //         alert("错误");
+    //     }})
 
 
 

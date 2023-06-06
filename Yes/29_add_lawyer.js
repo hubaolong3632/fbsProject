@@ -15,9 +15,7 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
      <span class="collapse-icon">–</span>
      <span class="expand-icon">+</span>
     </a>
-    <a href="#" data-toggle="remove">
-     ×
-    </a>
+  
    </div>
   </div>
   <div class="panel-body">

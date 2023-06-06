@@ -1,5 +1,5 @@
-import ajax1  from '../Yes/ajax.js'
-
+import ajax1  from './ajax.js'
+import update_lawyer  from './6_update_lawyer.js'
 //主页右侧替换(流量界面)
 let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
     //在这里写html代码
@@ -31,9 +31,7 @@ table td{
                     <i class="fa-rotate-right"></i>
                 </a>
 
-                <a href="#" data-toggle="remove">
-                    ×
-                </a>
+         
             </div>
         </div>
         
@@ -123,8 +121,10 @@ table td{
 
 
            // 修改律师
-           window.update_article=function (){
-               alert("修改")
+           window.update_article=function (id){
+
+
+               update_lawyer.htmlMagic(document,id);
            }
 
             //删除律师

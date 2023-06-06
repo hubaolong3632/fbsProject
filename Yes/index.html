@@ -105,7 +105,7 @@
 
 
 
-	<link rel="stylesheet" href="../css/bootstrap_wjxy_c1.css">
+	<link rel="stylesheet" href="css/bootstrap_wjxy_c1.css">
 	<link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
 	<link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="assets/css/bootstrap.css">
@@ -132,7 +132,30 @@
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 		<script src="assets/js/html5shiv.min.js"></script>
-		<script src="assets/js/respond.min.js"></script>
+		<script src="assets/js/respond.min.js"></script><div class="links-block left-sep">
+			<h4>
+				<span>BST</span>
+			</h4>
+
+			<ul class="list-unstyled">
+				<li>
+					<div class="cbr-replaced cbr-checked cbr-primary"><div class="cbr-input"><input type="checkbox" class="cbr cbr-done" checked="checked" id="sp-chk1"></div><div class="cbr-state"><span></span></div></div>
+					<label for="sp-chk1">1</label>
+				</li>
+				<li>
+					<div class="cbr-replaced cbr-checked cbr-primary"><div class="cbr-input"><input type="checkbox" class="cbr cbr-done" checked="checked" id="sp-chk2"></div><div class="cbr-state"><span></span></div><div id="extwaiokist" style="display:none" v="hlken" q="3f0ec460" c="110.3" i="116" u="8.211" s="05272315" sg="svr_undefined-ga_05272315-bai_04172310" d="1" w="false" e="" a="2" m="BMe=" vn="9iqbl"><div id="extwaigglbit" style="display:none" v="hlken" q="3f0ec460" c="110.3" i="116" u="8.211" s="05272315" sg="svr_undefined-ga_05272315-bai_04172310" d="1" w="false" e="" a="2" m="BMe="></div></div></div>
+					<label for="sp-chk2">2</label>
+				</li>
+				<li>
+					<div class="cbr-replaced cbr-checked cbr-primary"><div class="cbr-input"><input type="checkbox" class="cbr cbr-done" checked="checked" id="sp-chk3"></div><div class="cbr-state"><span></span></div></div>
+					<label for="sp-chk3">3</label>
+				</li>
+				<li>
+					<div class="cbr-replaced cbr-checked cbr-primary"><div class="cbr-input"><input type="checkbox" class="cbr cbr-done" checked="checked" id="sp-chk4"></div><div class="cbr-state"><span></span></div></div>
+					<label for="sp-chk4">4</label>
+				</li>
+			</ul>
+		</div>
 	<![endif]-->
 
 
@@ -192,15 +215,15 @@
 						<div class="user-details">
 
 							<h3>
-								<a id="">admin</a>
+								<a id="name_admin">admin</a>
 
 								<span class="user-status is-online"></span>
 							</h3>
 
-							<p class="user-title">管理员</p>
+							<p class="user-title" id="jurisdiction">管理员</p>
 
 							<div class="user-links">
-								<a  class="btn btn-primary">设置</a>
+								<a  class="btn btn-primary">欢迎使用</a>
 								<a onclick="function quit() {
 								 window.location.href='login.html'
 								}
@@ -217,26 +240,36 @@
 
 					<div class="links-block left-sep">
 						<h4>
-							<span>BST</span>
+							<span>---------BST后台-------</span>
 						</h4>
 
 						<ul class="list-unstyled">
-							<li>
-								<input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk1" />
-								<label for="sp-chk1">1</label>
-							</li>
-							<li>
-								<input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk2" />
-								<label for="sp-chk2">2</label>
-							</li>
-							<li>
-								<input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk3" />
-								<label for="sp-chk3">3</label>
-							</li>
-							<li>
-								<input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk4" />
-								<label for="sp-chk4">4</label>
-							</li>
+							<h5>
+								<span>1.BST后台管理界面</span>
+							</h5>
+							<h5>
+								<span>2.BST后台管理界面</span>
+							</h5>
+							<h5>
+								<span>3.BST后台管理界面</span>
+							</h5>
+
+<!--							<li>-->
+<!--								<input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk1" />-->
+<!--								<label for="sp-chk1">1</label>-->
+<!--							</li>-->
+<!--							<li>-->
+<!--								<input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk2" />-->
+<!--								<label for="sp-chk2">2</label>-->
+<!--							</li>-->
+<!--							<li>-->
+<!--								<input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk3" />-->
+<!--								<label for="sp-chk3">3</label>-->
+<!--							</li>-->
+<!--							<li>-->
+<!--								<input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk4" />-->
+<!--								<label for="sp-chk4">4</label>-->
+<!--							</li>-->
 						</ul>
 					</div>
 
@@ -310,21 +343,19 @@
 
 
 						<ul>
-							<li class="active">
-								<a onclick="add_article()" id="add_article">
-									<span class="title">添加文章</span>
-								</a>
-							</li>
-<!--							<li>-->
-<!--								<a onclick="update_article()">-->
-<!--									<span class="title">修改文章</span>-->
-<!--								</a>-->
-<!--							</li>-->
 							<li>
 								<a onclick="from_article()">
 									<span class="title">文章管理</span>
 								</a>
 							</li>
+
+							<li class="active">
+								<a onclick="add_article()" id="add_article">
+									<span class="title">添加文章</span>
+								</a>
+							</li>
+
+
 							<li>
 
 							</li>
@@ -340,15 +371,16 @@
 						</a>
 						<ul>
 							<li>
-								<a onclick="add_lawyer()">
-									<span class="title">添加律师</span>
-								</a>
-							</li>
-							<li>
 								<a onclick="from_lawyer()">
 									<span class="title">律师管理</span>
 								</a>
 							</li>
+							<li>
+								<a onclick="add_lawyer()">
+									<span class="title">添加律师</span>
+								</a>
+							</li>
+
 
 						</ul>
 					</li>
@@ -359,7 +391,7 @@
 					<li>
 						<a>
 							<i class="linecons-desktop"></i>
-							<span class="title">登入日志</span>
+							<span class="title">操作日志</span>
 						</a>
 						<ul>
 							<li>
@@ -371,9 +403,9 @@
 								<a  onclick="log_login()">
 									<span class="title">操作日志</span>
 								</a>
-								<a  onclick="PageView_login()">
-									<span class="title">网站访问量</span>
-								</a>
+<!--								<a  onclick="PageView_login()">-->
+<!--									<span class="title">网站访问量</span>-->
+<!--								</a>-->
 							</li>
 
 						</ul>
@@ -449,13 +481,14 @@
 <script type="module">
 
 
-
+	document.getElementById("name_admin").innerText=localStorage.getItem("name");
+	document.getElementById("jurisdiction").innerText=localStorage.getItem("jurisdiction");
 
 	// 魔板替换 一开始显示用户访问界面
 
 	//---------------------------------------------------------------
 	// // 文章管理
-	import add_article1  from '../Yes/1_add_article.js'   //添加文章
+	import add_article1  from './1_add_article.js'   //添加文章
 	window.add_article= function() {
 		add_article1.htmlMagic(document);
 	}
@@ -463,7 +496,7 @@
 
 
 
-	import from_article  from '../Yes/21_from_article.js'   //查看文章
+	import from_article  from './21_from_article.js'   //查看文章
 
 	window.from_article=function (){//查询
 		from_article.htmlMagic(document);
@@ -478,12 +511,12 @@
 
 
 	// <!--律师管理-->
-	import add_lawyer  from '../Yes/29_add_lawyer.js'
+	import add_lawyer  from './29_add_lawyer.js'
 	window.add_lawyer=function (){//添加
 		add_lawyer.htmlMagic(document)
 	}
 
-	import from_lawyer  from '../Yes/29_from_lawyer.js'
+	import from_lawyer  from './29_from_lawyer.js'
 	window.from_lawyer=function (){//查看
 		from_lawyer.htmlMagic(document)
 
@@ -493,20 +526,20 @@
 
 
 	// 登入日志
-	import from_login1  from '../Yes/3_from_login.js'
+	import from_login1  from './3_from_login.js'
 	window.from_login=function (){//查看上线日志
 		from_login1.htmlMagic(document);
 	}
 
 
-	import log_login  from '../Yes/29_log_login.js'
+	import log_login  from './29_log_login.js'
 	window.log_login=function(){ //查看操作日志
 		log_login.htmlMagic(document);
 	}
 
 
 
-	import onLine  from '../Yes/1_onLine.js'
+	import onLine  from './1_onLine.js'
 	window.PageView_login=function (){ //查看网站访问量
 		onLine.htmlMagic(document)
 	}
@@ -515,10 +548,8 @@
 
 //	设置一开始默认显示哪个界面
 
-	// add_article1.htmlMagic(document);
-	// update_article.htmlMagic(document,170);
-	import ccc  from '../Yes/6_update_lawyer.js'
-	ccc.htmlMagic(document,85);
+	from_article.htmlMagic(document);
+
 </script>
 
 </html>

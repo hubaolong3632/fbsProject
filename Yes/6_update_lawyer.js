@@ -15,9 +15,7 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
      <span class="collapse-icon">–</span>
      <span class="expand-icon">+</span>
     </a>
-    <a href="#" data-toggle="remove">
-     ×
-    </a>
+
    </div>
   </div>
   <div class="panel-body">
@@ -260,9 +258,7 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
 
             let sum_massage=0;
             for (let key in attorney.data) {
-                if(key=="id") continue;
-
-
+                if(key=="id") continue; //id不算
                 if ( attorney.data[key] === "") {
                     //设置字体名字为红色
                     sum_massage++;
@@ -277,14 +273,16 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
                 }
             }
 
-            let fileInput = document.getElementById("img");
-            if (fileInput.files.length === 0) {
-                sum_massage=1;
-                fileInput.parentNode.parentNode.querySelector("[name='show_ys']").style.color = "red"
 
-            } else {
-                fileInput.parentNode.parentNode.querySelector("[name='show_ys']").style.color = "#808080"
-            }
+            //认证是否有放图片
+            // let fileInput = document.getElementById("img");
+            // if (fileInput.files.length === 0) {
+            //     sum_massage=1;
+            //     fileInput.parentNode.parentNode.querySelector("[name='show_ys']").style.color = "red"
+            //
+            // } else {
+            //     fileInput.parentNode.parentNode.querySelector("[name='show_ys']").style.color = "#808080"
+            // }
 
 
 
