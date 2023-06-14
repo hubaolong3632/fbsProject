@@ -51,12 +51,12 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
                       <input type="text" class="form-control" id="bcc" tabindex="2">
                     </div>
 
-                    <div class="form-group">
-                      <label for="subject" _msttexthash="13525915" _msthash="174">次主题：</label>
-                      <input type="text" class="form-control" id="subject" tabindex="1">
-                      <p style="color: red" id="p_zy"></p>
-                    </div>
-                    
+<!--                    <div class="form-group">-->
+<!--                      <label for="subject" _msttexthash="13525915" _msthash="174">次主题：</label>-->
+<!--                      <input type="text" class="form-control" id="subject" tabindex="1">-->
+<!--                      <p style="color: red" id="p_zy"></p>-->
+<!--                    </div>-->
+<!--                    -->
                     
                     
             
@@ -206,7 +206,7 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
         let select_name = document.getElementById("select_name");
 
         let is_name = await ajax1.ajaxPromise("attorney/from_attorney_null_name", "post", "", $); //  记得把ajax打开
-
+            console.log(is_name);
         for(let a of  is_name.data){
             select_name.innerHTML+=`
              <option value="${a.name}">${a.name}</option>
@@ -327,7 +327,8 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
             document.getElementById("show_message").innerHTML=`
                <h2 class="text-center mb-4">${newVar.msg} :${newVar.data.massage}</h2>
             <hr>
-               <a href="index.html?id=${newVar.data.id}" class="btn btn-primary d-block mx-auto mb-3">查看文章:${param.data.title}</a>
+<!--               <a href="../BST_System/newswenzhang.html?id=${newVar.data.id}" class="btn btn-primary d-block mx-auto mb-3">查看文章:${param.data.title}</a>-->
+               <a href="../BST/web/newswenzhang.html?id=${newVar.data.id}" class="btn btn-primary d-block mx-auto mb-3">查看文章:${param.data.title}</a>
             <hr>
             `;
             document.getElementById('modal-overlay').style.display = 'flex';//显示弹窗

@@ -37,7 +37,6 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
      <div class="panel panel-default">
 
 
-
               <div style="width: 250px; background-color: #fdfdfd;" >
                 <div class="my-sidebar"  style="background-color: #fdfdfd;">
                   <ul class="my-sidebar-menu" style="background-color: #fdfdfd;">
@@ -149,6 +148,8 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
         //初始化代码
         window.init_init=async function () {
             let promise = await ajax1.ajaxPromise("artile/from", "post", "", $);//第一个的全部栏目
+            console.log(promise);
+
             init_article(promise);
         }
         await init_init(); //执行初始化
@@ -211,8 +212,7 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
 
             let id = this_article.parentNode.parentNode.querySelectorAll("td")[0].innerText;
             let title = this_article.parentNode.parentNode.querySelectorAll("td")[1].innerText;
-            let state = this_article.parentNode.parentNode.querySelectorAll("td")[4].innerText;
-
+            let state = this_article.parentNode.parentNode.querySelectorAll("td")[5].innerText;
 
             let article_delete = {
                 data: {

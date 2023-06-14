@@ -254,22 +254,7 @@
 								<span>3.BST后台管理界面</span>
 							</h5>
 
-<!--							<li>-->
-<!--								<input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk1" />-->
-<!--								<label for="sp-chk1">1</label>-->
-<!--							</li>-->
-<!--							<li>-->
-<!--								<input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk2" />-->
-<!--								<label for="sp-chk2">2</label>-->
-<!--							</li>-->
-<!--							<li>-->
-<!--								<input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk3" />-->
-<!--								<label for="sp-chk3">3</label>-->
-<!--							</li>-->
-<!--							<li>-->
-<!--								<input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk4" />-->
-<!--								<label for="sp-chk4">4</label>-->
-<!--							</li>-->
+
 						</ul>
 					</div>
 
@@ -364,6 +349,8 @@
 
 
 
+
+
 					<li>
 						<a>
 							<i class="linecons-cog"></i>
@@ -387,6 +374,53 @@
 
 
 
+<!-- 					三大板块  企业合规 知识产权 等-->
+					<li>
+						<a>
+							<i class="linecons-note"></i>
+							<span class="title">三大板块</span>
+						</a>
+
+
+						<ul>
+
+
+
+
+							<li >
+								<a onclick="from_qiyeihegui()" >
+									<span class="title">企业合规</span>
+								</a>
+							</li>
+							<li >
+								<a onclick="from_zhishichangquan()">
+								<span class="title">知识产权</span>
+								</a>
+							</li>
+							<li >
+								<a onclick="from_xingyonguanli()" >
+									<span class="title">信用管理</span>
+								</a>
+							</li>
+
+
+							<li>
+
+							</li>
+						</ul>
+					</li>
+
+
+
+
+
+
+
+
+
+
+
+
 					<li>
 						<a>
 							<i class="linecons-desktop"></i>
@@ -405,8 +439,18 @@
 								</a>
 							</li>
 
+							<li >
+								<a  onclick="from_leave1()">
+									<span class="title">留言日志</span>
+								</a>
+							</li>
+
 						</ul>
 					</li>
+
+
+
+
 
 
 <!--					卡bug-->
@@ -529,6 +573,38 @@
 	//---------------------------------------------------------------
 
 
+
+
+
+	//---------------------------------------------------------------
+
+
+
+	// <!--三大板块-->
+	import from_add_introduce_qiyeihegui  from './13_from_add_introduce_qiyeihegui.js'
+	window.from_qiyeihegui=function (){//企业合规
+		from_add_introduce_qiyeihegui.htmlMagic(document)
+	}
+
+
+	import from_add_introduce_xingyonguanli  from './13_from_add_introduce_xingyonguanli.js'
+	window.from_xingyonguanli=function (){//信用管理
+		from_add_introduce_xingyonguanli.htmlMagic(document)
+	}
+
+	import from_add_introduce_zhishichangquan  from './13_from_add_introduce_zhishichangquan.js'
+	window.from_zhishichangquan=function (){//知识产权
+		from_add_introduce_zhishichangquan.htmlMagic(document)
+	}
+
+
+
+	//---------------------------------------------------------------
+
+
+
+
+
 	// 登入日志
 	import from_login1  from './3_from_login.js'
 	window.from_login=function (){//查看上线日志
@@ -542,17 +618,20 @@
 	}
 
 
-
-	import onLine  from './1_onLine.js'
-	window.PageView_login=function (){ //查看网站访问量
-		onLine.htmlMagic(document)
+	import from_leave  from './11_from_leave.js'
+	window.from_leave1=function (){
+		from_leave.htmlMagic(document);
 	}
 
 
 
-//	设置一开始默认显示哪个界面
 
-	from_article.htmlMagic(document);
+
+//	设置一开始默认显示哪个界面
+// 	from_article.htmlMagic(document);
+	from_add_introduce_qiyeihegui.htmlMagic(document)
+
+	// add_lawyer.htmlMagic(document)
 
 </script>
 

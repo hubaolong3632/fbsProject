@@ -64,6 +64,7 @@ table td{
                     <th>手机号</th>
                     <th>邮箱</th>
                     <th>文章发布数量</th>
+                    <th>层级</th>
                     <th>修改</th>
                     <th>删除律师</th>
                </tr>
@@ -94,6 +95,11 @@ table td{
         if(newVar.code==1){
             let fromlog="";
             for(let i=0;i<newVar.data.length; i++){
+                let cheng="第 "+newVar.data[i].rank+" 层";
+                if(newVar.data[i].rank==999) {
+                    cheng="层级隐";
+                }
+
                 fromlog=fromlog+`
                  <tr>
                     <td style="width:10%;">${i + 1}</td>
@@ -101,6 +107,7 @@ table td{
                     <td style="width:15%;">${newVar.data[i].phone}</td>
                     <td style="width:15%;">${newVar.data[i].mail}</td>
                   <td style="width:5%;text-align: center; vertical-align: middle; color: #00e367">${newVar.data[i].count}</td>
+                  <td style="width:5%;text-align: center; vertical-align: middle; color: #00e367">${cheng}</td>
                 
                    <td style="cursor: pointer;">
                        <button type="button" class="btn btn-outline-danger btn-delete" data-toggle="modal" data-target="#deleteModal">
@@ -118,7 +125,7 @@ table td{
                  </tr>
                 `
             }
-            document1.getElementById("tbodyfrom").innerHTML+=fromlog; //放置到表单里面
+            document1.getElementById("tbodyfrom").innerHTML=fromlog; //放置到表单里面
 
 
            // 修改律师
@@ -130,7 +137,7 @@ table td{
 
             //删除律师
             window.delete_article=async function (id,name,this_article) {
-                if (confirm(`确定要删除律师:  ${name}    吗?`)) { //如果点击了全都
+                if (confirm(`确定要删除律师:  ${name}    吗? 删除之后对应的文章也会消失`)) { //如果点击了全都
 
                     let lawyer_id = {
                         data: {

@@ -1,6 +1,7 @@
 // let ip="http://localhost:8080/api/";
 // let ip="http://localhost:9090/";
-let ip="http://00000.work:19099/";
+// let ip="https://00000.work:44443/";
+let ip="https://bstlaw.cn:44443/";
 let ajax={
     formateString:function(str,data){ //魔板匹配
         return str.replace(/\{#(\w+)#\}/g,function(match,key){

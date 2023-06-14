@@ -52,19 +52,19 @@ let MBRl={
                       <input type="text" class="form-control" id="bcc" tabindex="2">
                     </div>
 
-                    <div class="form-group">
-                      <label for="subject" _msttexthash="13525915" _msthash="174">摘要：</label>
-                      <input type="text" class="form-control" id="subject" tabindex="1">
-                      <p style="color: red" id="p_zy"></p>
-                    </div>
-                    
+<!--                    <div class="form-group">-->
+<!--                      <label for="subject" _msttexthash="13525915" _msthash="174">摘要：</label>-->
+<!--                      <input type="text" class="form-control" id="subject" tabindex="1">-->
+<!--                      <p style="color: red" id="p_zy"></p>-->
+<!--                    </div>-->
+<!--                    -->
                     
                     
             
                     
 
                     <!--       富士康文本编译器-->
-                    <!--<link href="https://unpkg.com/@wangeditor/editor@latest/dist/css/style.css" rel="stylesheet">-->
+                    <link href="https://unpkg.com/@wangeditor/editor@latest/dist/css/style.css" rel="stylesheet">
 <!--                    <link rel="stylesheet" href="css/style.css">-->
                     <style>
                       #editor—wrapper {
@@ -237,7 +237,7 @@ let MBRl={
                     er.value= columnList.column;
                     select_name_id.value=articleList.name;
                     add_zt_id.value=articleList.title;
-                    subject_id.value=articleList.abs;
+                    // subject_id.value=articleList.abs;
                     text= articleList.text;
 
 
@@ -319,7 +319,7 @@ let MBRl={
 
             param.data.name =  select_name_id.value
             param.data.title =  add_zt_id.value.slice(0, 100);  //主题 不能超过100个字符
-            param.data.abs =   subject_id.value.slice(0, 100);// 中等  不能超过100个字符
+            // param.data.abs =   subject_id.value.slice(0, 100);// 中等  不能超过100个字符
 
 
             param.data.text = editor.getHtml(); // 获取编辑器的内容 并且压缩成一行 内容
@@ -337,10 +337,10 @@ let MBRl={
                 noBool=true;
             }
 
-            if(param.data.abs==null||param.data.abs.trim()=="..."){ //摘要
-                p_zy.innerText ="摘要不能为空";
-                noBool=true;
-            }
+            // if(param.data.abs==null||param.data.abs.trim()=="..."){ //摘要
+            //     p_zy.innerText ="摘要不能为空";
+            //     noBool=true;
+            // }
             if(param.data.columnvalue==null||param.data.columnvalue.trim()==""){ //主标题
                 p_zbt.innerText ="主标题不能为空";
                 noBool=true;
@@ -355,6 +355,7 @@ let MBRl={
             document.getElementById("show_message").innerHTML=`
                        <h2 class="text-center mb-4">${newVar.msg} :${newVar.data}</h2>
                     <hr>
+
                        <a href="index.html?id=${id}" class="btn btn-primary d-block mx-auto mb-3">查看文章:${param.data.title}</a>
                     <hr>
             `;

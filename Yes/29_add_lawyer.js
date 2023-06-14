@@ -64,6 +64,18 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
     
     
     
+      <div class="form-group">
+     <label  name="show_ys" class="col-sm-1 control-label" for="field-4">透明图像</label>
+
+     <div class="col-sm-10">
+      <input type="file" class="form-control" id="img_to" accept="image/*" defaultValue="选择头像">
+      
+     <img id="img_file_to" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" height="15%" width="10%">
+     </div>
+    </div>
+    
+    
+    
     
 
       <div class="form-group-separator"></div>
@@ -145,6 +157,28 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
       <textarea class="form-control autogrow" cols="5" id="cn"style="overflow-x: hidden; overflow-y: auto; resize: none; height: 50px; height: 100px; width: 100%;"></textarea>
      </div>
     </div>
+    <div class="form-group">
+      <label  name="show_ys" class="col-sm-1 control-label" for="field-5">律师等级</label>
+     <div class="col-sm-10">
+<!--           <label for="sboxit-1"></label>-->
+                      <select class="form-control selectpicker" id="rank" data-style="btn-primary">
+                        <option value="1">层级一</option>
+                        <option value="2">层级二</option>
+                        <option value="3">层级三</option>
+                        <option value="4">层级四</option>
+                        <option value="5">层级五</option>
+                        <option value="6">层级六</option>
+                        <option value="7">层级七</option>
+                        <option value="8">层级八</option>
+                        <option value="9">层级九</option>
+                        <option value="999">层级隐</option>
+                      </select>
+     </div>
+                
+   </div>
+      <div class="form-group">
+         <div class="form-group">
+    
 
     
 
@@ -158,6 +192,8 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
         <input type="button" class="form-control btn btn-success" id="partner" value="提交" onclick="lawyerAdd()">
       </div>
 </div>
+
+
 
 
 
@@ -204,6 +240,28 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
 
         });
 
+
+        //图片的上传透明图像
+        document.getElementById('img_to').addEventListener('change', async function (event) {
+
+            //设置文件
+            let formData = new FormData();
+            formData.append('file',event.target.files[0]);
+            let attorneyImg = {
+                data:  formData
+            }
+            //  图片回显
+            let promise = await ajax1.ajaxFile("multiFileAttorney","post",attorneyImg,$);
+            document.getElementById("img_file_to").src=promise.data.href;
+
+        });
+
+
+
+
+
+
+
         window.delete_lawyerAdd=async  function () {
             document1.getElementById("name").value=           "";
             document1.getElementById("partner").value=        "";
@@ -229,11 +287,13 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
                     "phone": "",
                     "mail": "",
                     "img": "",
+                    "img_to": "",
                     "essential": "",
                     "workexperience": "",
                     "representative": "",
                     "educational": "",
-                    "cn": ""
+                    "cn": "",
+                    "rank": ""
                 }
             }
 
@@ -248,6 +308,9 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
             attorney.data.representative = document1.getElementById("representative").value;
             attorney.data.educational = document1.getElementById("educational").value;
             attorney.data.cn = document1.getElementById("cn").value;
+            attorney.data.rank = document1.getElementById("rank").value;
+
+            attorney.data.img_to = document.getElementById("img_file_to").src;
 
 
 
@@ -262,10 +325,11 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
                     document.getElementById(key).parentNode.parentNode.querySelector("[name='show_ys']").style.color = "red"
                 }else{
                     document.getElementById(key).parentNode.parentNode.querySelector("[name='show_ys']").style.color = "#808080"
-
                 }
             }
 
+
+            //普通图片
             let fileInput = document.getElementById("img");
             if (fileInput.files.length === 0) {
                 sum_massage=1;
@@ -273,6 +337,16 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
 
             } else {
                 fileInput.parentNode.parentNode.querySelector("[name='show_ys']").style.color = "#808080"
+            }
+
+            //透明图片
+            let img_to = document.getElementById("img_to");
+            if (img_to.files.length === 0) {
+                sum_massage=1;
+                img_to.parentNode.parentNode.querySelector("[name='show_ys']").style.color = "red"
+
+            } else {
+                img_to.parentNode.parentNode.querySelector("[name='show_ys']").style.color = "#808080"
             }
 
 
@@ -304,7 +378,8 @@ let MBRl = {//MagicBoardReplacement  MBRL  魔板替换
                 document.getElementById("show_message").innerHTML=`
                <h2 class="text-center mb-4">${newVar.msg} : 律师添加成功</h2>
                 <hr>
-                      <a href="index.html?id=${newVar.data}" class="btn btn-primary d-block mx-auto mb-3">查看律师</a>
+                  <a href="../BST/web/lvshijianli.html?lsid=${newVar.data}" class="btn btn-primary d-block mx-auto mb-3">查看律师</a>
+
                 <hr>
             `;
 
